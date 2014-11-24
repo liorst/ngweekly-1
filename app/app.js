@@ -26,7 +26,7 @@ angular.module('CountryExplorer', [])
     };
     $scope.playGame = function(){
       delete $scope.input.guess;
-      if($scope.input.guess.length > 2){
+      if($scope.input.country.name.length > 2){
         $scope.input.show = 'guess';
         $scope.result = false;
       }
