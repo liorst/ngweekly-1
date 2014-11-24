@@ -9,17 +9,15 @@
   <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="app.css"/>
 </head>
-<body>
-<div class="container">
+<body ng-app="CountryExplorer">
+<div class="container" ng-controller="MainCtrl">
   <div class="col-sm-12">
     <h1 text-center>Choose a country:</h1>
 
       <div class="input-group-inline">
         <input ng-model="input.country.name" class="input-lg form-control-inline"/>
-        <button ng-click="getThatData()" class="btn btn-primary">GO</button>
+        <button ng-click="getThatData()" class="btn btn-primary">Go</button>
       </div>
-      <br/>
-
     <br/>
     <ul class="list-group country-details">
       <li class="list-group-item">Name: {{country.name}}</li>

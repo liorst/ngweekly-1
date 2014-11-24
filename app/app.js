@@ -5,7 +5,9 @@ angular.module('CountryExplorer', [])
       api = {
         get: function(name){
           var url = endpoint + name + '?fullText=true';
-          //Do something with $http
+          return $http.get(url).then(function(response){
+            return response.data[0];
+          });
         }
       };
     return api;
@@ -16,7 +18,7 @@ angular.module('CountryExplorer', [])
         name:'Jamaica',
         region:'America',
         famousPerson: 'Usain Bolt'
-        //Some more default data
+        //Some more default data data
       };
     $scope.input = {
       country: $scope.country
@@ -25,6 +27,7 @@ angular.module('CountryExplorer', [])
     $scope.getThatData = function(){
       Countries.get($scope.input.country.name).then(function(country){
         //Do something with response
+        $scope.country = country;
       });
     };
   });
