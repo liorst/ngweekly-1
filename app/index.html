@@ -11,13 +11,30 @@
 </head>
 <body ng-app="CountryExplorer">
 <div class="container" ng-controller="MainCtrl">
+<div class="container" ng-controller="MainCtrl">
   <div class="col-sm-12">
     <h1 text-center>Choose a country:</h1>
+    <div ng-switch="input.show">
 
-      <div class="input-group-inline">
+      <div class="input-group-inline" ng-switch-when="play">
         <input ng-model="input.country.name" class="input-lg form-control-inline"/>
-        <button ng-click="getThatData()" class="btn btn-primary">Go</button>
+        <button ng-click="playGame()" class="btn btn-primary">Play</button>
       </div>
+      <br/>
+
+      <div class="input-group-inline" ng-switch-when="guess">
+        <input ng-model="input.guess" class="input-lg form-control-inline">
+        <button ng-click="getThatData()" class="btn btn-success">Guess!</button>
+      </div>
+
+      <div class="input-group-inline" ng-switch-when="end">
+        <button ng-click="restartGame()" class="btn btn-primary">New Game</button>
+      </div>
+
+    </div>
+
+      <h2 class="text-success" ng-if="result && input.guess === result">You're Right!</h2>
+      <h2 class="text-default" ng-if="result && input.guess !== result">Wrong guess! Better luck next time</h2>
     <br/>
     <ul class="list-group country-details">
       <li class="list-group-item">Name: {{country.name}}</li>

@@ -21,13 +21,34 @@ angular.module('CountryExplorer', [])
         //Some more default data data
       };
     $scope.input = {
-      country: $scope.country
+      country: $scope.country,
+      show:'end'
+    };
+    $scope.playGame = function(){
+      delete $scope.input.guess;
+      if($scope.input.guess.length > 2){
+        $scope.input.show = 'guess';
+        $scope.result = false;
+      }
+    };
+    function finishGame(result){
+      $scope.play = false;
+      $scope.input.show = 'end';
+      $scope.result = result;
+    }
+    $scope.restartGame = function(){
+      $scope.input.guess = null;
+      $scope.input.show = 'play';
+      $scope.play = true;
     };
 
     $scope.getThatData = function(){
       Countries.get($scope.input.country.name).then(function(country){
         //Do something with response
         $scope.country = country;
+        finishGame(country.capital);
+      }, function(){
+        finishGame(null);
       });
     };
   });
